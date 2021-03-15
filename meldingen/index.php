@@ -9,6 +9,20 @@
 <body>
 
     <?php require_once '../header.php'; ?>
+
+    <?php 
+        require_once '../backend/conn.php';
+        $query = "SELECT * FROM meldingen";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $meldingen = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        foreach($meldingen as $melding)
+        {
+            echo "<p>" .$melding['attractie'], ", "  .$melding['type']; "</p>";
+        }    
+    ?>
+
+   
     
     <div class="container">
         <h1>Meldingen</h1>
