@@ -22,7 +22,7 @@ $overig = $_POST['overig'];
 require_once 'conn.php';
 
 //2. Query
-$query = "INSERT INTO meldingen (attractie, type, capaciteit, prioriteit, melder, overig) VALUES (:attractie, :type, :capaciteit, :prioriteit, :melder, :overig)";
+$query = "INSERT INTO meldingen (attractie, type, capaciteit, prioriteit, melder, overige_info) VALUES (:attractie, :type, :capaciteit, :prioriteit, :melder, :overige_info)";
 
 //3. Prepare
 $statement = $conn->prepare($query);
@@ -34,7 +34,7 @@ $statement->execute([
     ":capaciteit" => $capaciteit,
     ":prioriteit" => $prioriteit,
     ":melder" => $melder,
-    ":overig" => $overig
+    ":overige_info" => $overig
 ]);
 
 Header("Location: ../meldingen/index.php?msg=Melding opgeslagen");

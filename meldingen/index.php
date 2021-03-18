@@ -16,11 +16,9 @@
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $meldingen = $stmt->fetchALL(PDO::FETCH_ASSOC);
-        foreach($meldingen as $melding)
-        {
-            echo "<p>" .$melding['attractie'], ", "  .$melding['type']; "</p>";
-        }    
     ?>
+
+    
 
    
     
@@ -33,7 +31,22 @@
             echo "<div class='msg'>" . $_GET['msg'] . "</div>";
         } ?>
 
-        <div style="height: 300px; background: #ededed; display: flex; justify-content: center; align-items: center; color: #666666;">(hier komen de storingsmeldingen)</div>
+        <div style="height: 300px; background: #ededed; display: flex; justify-content: center; align-items: center; color: #666666;"><table>
+        <tr>
+            <th>Attractie</th>
+            <th>Type</th>
+            <th>Melder</th>
+            <th>Overige info</th>
+        </tr>
+        <?php foreach($meldingen as $melding): ?>
+            <tr>
+                <td><?php echo $melding['attractie']; ?></td>
+                <td><?php echo $melding['type']; ?></td>
+                <td><?php echo $melding['melder']; ?></td>
+                <td><?php echo $melding['overige_info']; ?></td>
+            </tr>
+        <?php endforeach; ?>    
+    </table></div>
     </div>  
 
 </body>
